@@ -1,0 +1,13 @@
+	Create a new database import the following tables from CreditCard Profiling Dataset: cc_profile, customer_region, region. 
+Once you have imported the tables, please answer the following business questions: 
+
+1.	Customers' names and the city they live in.
+2.	Find the list of married customers from midwest and south regions. 
+3.	Find the region-wise list of customers, their age, and the fraud level.
+4.	How many cities the customers live in?
+5.	Show all the customers from MidWest if there are any female customers in MidWest with salary more than 700,000.
+6.	List the total number of total number of customers in each city. 
+7.	Show only those cities with at least 400 customers.
+8.	List the top 5 cities with highest income customers.
+9.	List the average salary of female customers in different regions. Hint: Use Avg() function after grouping
+10.	List the number of customers from each region and city.
