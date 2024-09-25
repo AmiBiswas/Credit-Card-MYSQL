@@ -1,0 +1,66 @@
+create database credit_card;
+use credit_card;
+select * from region;
+select * from customers_region;
+select * from customers;
+
+/* 1.	Customers' names and the city they live in.*/
+select c.custid,name,city from customers as c join customers_region as cr
+on c.custid=cr.custid ;
+
+/* 2.	Find the list of married customers from midwest and south regions. */
+select c.custid,name,region,maritalstatus from customers as c 
+join customers_region as cr
+on c.custid=cr.custid 
+where maritalstatus='married' and region in ('midwest') or region like '%south%' ;
+
+/*3.	Find the region-wise list of customers, their age, and the fraud level.*/
+select c.custid,name,age,fraud_level,r.region from customers as c join customers_region as cr
+on c.custid=cr.custid join region as r on r.region=cr.region
+order by r.region;
+
+/*4.How many cities the customers live in?*/
+select count(distinct city) from customers_region
+;
+
+/*5.	Show all the customers from MidWest if there are any female customers in MidWest 
+with salary more than 700,000.*/
+select * from customers as c join customers_region as cr
+on c.custid=cr.custid where  annualsalary>700000;
+
+/* 6.	List the total number of customers in each city. */
+ select city,count(*) from customers_region
+ group by city;
+ 
+ /* 7.	Show only those cities with at least 400 customers.*/
+ select city,count(*) as cnt from customers_region
+ group by city
+ having cnt>400;
+ 
+ /* 8.	List the top 5 cities with highest income customers.*/
+ select  city,sum(annualsalary) total_salary from customers as c 
+ join customers_region as cr
+ on c.custid=cr.custid 
+ group by city
+ limit 5;
+ 
+ /* 9.	List the average salary of female customers in different regions. 
+ Hint: Use Avg() function after grouping*/
+ select region,round(avg(annualsalary),2) from customers as c inner
+ join customers_region as cr
+ on c.custid=cr.custid where gender='f'
+ group by region;
+ 
+ /* 10.	List the number of customers from each region and city.*/
+ select region,city,count(*)
+ from customers_region
+ group by region,city;
+ 
+ 
+/* select avg(annualsalary) from customers; */
+ /* persons with salaries greater than average
+select * from customers
+where annualsalary >(select avg(annualsalary) from customers);*/
+
+
+
